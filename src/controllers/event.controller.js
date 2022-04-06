@@ -45,7 +45,7 @@ const updateEvent = async (req, res) => {
 
   try {
     if (event) {
-      const eventToUpdate = await update(req.body);
+      await update(req.body);
 
       return res.status(200).json({ message: 'Evento atualizado com sucesso' });
     } else {

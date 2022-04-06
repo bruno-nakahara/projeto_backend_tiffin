@@ -1,5 +1,5 @@
 import express from 'express';
-import { json } from 'body-parser';
+import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import eventRoutes from './routes/eventRoutes';
@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGO_DB_URL, {
 });
 
 app.use(cors());
-app.use(json());
+app.use(bodyParser.json());
 app.use(eventRoutes);
 
 app.listen(process.env.PORT, () => {
