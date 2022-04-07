@@ -31,6 +31,7 @@ $ cd projeto_backend_tiffin
 $ npm install
 
 # Se tem todas as dependências, então rode a aplicação com
+# Na aplicação cria um arquivo ".env" contendo PORT=Número da porta e MONGO_DB_URL=mongodb://127.0.0.1:27017/Nome da database
 $ npm run dev
 
 # e pronto! Back-End da Aplicação rodando.
@@ -38,4 +39,4 @@ $ npm run dev
 # <a href="https://unsplash.com/">unsplash</a> para buscar imagem
 ```
 
-<p>Na aplicação cria um arquivo ".env" contendo PORT=Número da porta e MONGO_DB_URL=mongodb://127.0.0.1:27017/Nome da database</p>
+
