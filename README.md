@@ -35,7 +35,7 @@ $ npm install
 $ npm run dev
 
 # e pronto! Back-End da Aplicação rodando.
-# Acesse a página "http://localost:<Port>/api-docs" para visualizar a documentação da aplicação
+# Acesse a página "http://localhost:<Port>/api-docs" para visualizar a documentação da aplicação
 # <a href="https://unsplash.com/">unsplash</a> para buscar imagem
 ```
 
