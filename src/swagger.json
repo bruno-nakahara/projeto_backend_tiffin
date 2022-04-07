@@ -1,0 +1,284 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de eventos - tiffin",
+    "description": "API para realizar as operações como criar, ler, pesquisar, atualizar e deletar eventos",
+    "termsOfService": "http://localhost:3000/terms",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/v1",
+      "description": "API de teste"
+    }
+  ],
+  "paths": {
+    "/events": {
+      "post": {
+        "summary": "Cadastro de evento",
+        "description": "Rota responsável por cadastrar um novo evento",
+        "tags": ["Events"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEvent"
+              },
+              "examples": {
+                "EventPost": {
+                  "value": {
+                    "name": "Hackaton para programadores Full-Stack",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "price": "250",
+                    "date": "25/05/2023",
+                    "category": "Programação",
+                    "local": "Taquaral, Campinas - SP",
+                    "imageUrl": "https://images.unsplash.com/photo-1648199144224-3fd842dcc38f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  }
+                },
+                "EventPostError": {
+                  "value": {
+                    "name": "Hackaton para programadores Full-Stack",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "price": "",
+                    "date": "25/05/2023",
+                    "category": "Programação",
+                    "local": "Taquaral, Campinas - SP",
+                    "imageUrl": "https://images.unsplash.com/photo-1648199144224-3fd842dcc38f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  }
+                },
+                "EventPostEmpty": {
+                  "value": {
+                    "name": "",
+                    "description": "",
+                    "price": "",
+                    "date": "",
+                    "category": "",
+                    "local": "",
+                    "imageUrl": ""
+                  }
+                },
+                "SecondEventPost": {
+                  "value": {
+                    "name": "Hackaton para programadores Back-End",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "price": "200",
+                    "date": "19/05/2023",
+                    "category": "Programação",
+                    "local": "São Paulo - SP",
+                    "imageUrl": "https://images.unsplash.com/photo-1648217516771-74a081268aac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=673&q=80"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "201": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "summary": "Listagem de eventos",
+        "description": "Rota responsável por listar eventos e/ou buscar eventos pelo nome, descrição, data, categoria ou local",
+        "tags": ["Events"],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Nome, descrição, data, categoria ou local do evento para a busca",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{id}": {
+      "put": {
+        "summary": "Atualizar evento",
+        "description": "Rota responsável por atualizar evento",
+        "tags": ["Events"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "_id do evento",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Event"
+              },
+              "examples": {
+                "EventPut": {
+                  "value": {
+                    "_id": "Coloca o _id do evento aqui",
+                    "name": "Hackaton para programadores Full-Stack",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "price": "300",
+                    "date": "25/05/2023",
+                    "category": "Programação",
+                    "local": "Campinas - SP",
+                    "imageUrl": "https://images.unsplash.com/photo-1648199144224-3fd842dcc38f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  }
+                },
+                "EventPostError": {
+                  "value": {
+                    "_id": "Coloca o _id do evento aqui",
+                    "name": "Hackaton para programadores Full-Stack",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "price": "",
+                    "date": "25/05/2023",
+                    "category": "Programação",
+                    "local": "Taquaral, Campinas - SP",
+                    "imageUrl": "https://images.unsplash.com/photo-1648199144224-3fd842dcc38f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  }
+                },
+                "EventPostEmpty": {
+                  "value": {
+                    "_id": "Coloca o _id do evento aqui",
+                    "name": "",
+                    "description": "",
+                    "price": "",
+                    "date": "",
+                    "category": "",
+                    "local": "",
+                    "imageUrl": ""
+                  }
+                },
+                "SecondEventPut": {
+                  "value": {
+                    "_id": "Coloca o _id do evento aqui",
+                    "name": "Hackaton para programadores Back-End",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "price": "280",
+                    "date": "19/05/2023",
+                    "category": "Programação",
+                    "local": "São Paulo",
+                    "imageUrl": "https://images.unsplash.com/photo-1648217516771-74a081268aac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=673&q=80"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar evento",
+        "description": "Rota responsável por deletar evento",
+        "tags": ["Events"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "_id do evento",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NewEvent": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "local": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "local": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
