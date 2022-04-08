@@ -60,10 +60,7 @@ const remove = async id => {
 
   const eventDeleted = await EventModel.deleteOne({ _id: id });
 
-  if (eventDeleted.deletedCount > 0) {
-    return true;
-  }
-  return false;
+  return eventDeleted.deletedCount > 0;
 };
 
 export { create, getAll, search, update, findEvent, remove };
